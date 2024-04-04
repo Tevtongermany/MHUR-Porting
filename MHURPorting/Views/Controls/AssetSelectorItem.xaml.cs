@@ -31,14 +31,14 @@ public partial class AssetSelectorItem  : IExportableAsset
     public string TooltipName { get; set; }
     public string ID { get; set; }
 
-    public AssetSelectorItem(UObject asset,UObject UIasset,UObject MainDataAsset, UTexture2D previewTexture, bool isRandomSelector = false)
+    public AssetSelectorItem(UObject asset,UObject UIasset,UObject MainDataAsset, UTexture2D previewTexture,string CharacterDisplayName, bool isRandomSelector = false)
     {
         InitializeComponent();
         DataContext = this;
         UIAsset = asset;
         Asset = asset;
         MainAsset = MainDataAsset;
-        DisplayName = "Skin";
+        DisplayName = CharacterDisplayName;
         Description = "skin";
         ID = "No";
 

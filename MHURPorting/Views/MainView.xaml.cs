@@ -48,7 +48,7 @@ public partial class MainView
     {
         if (sender is not TabControl tabControl) return;
         if (AppVM.AssetHandlerVM is null) return;
-        
+
         var assetType = (EAssetType) tabControl.SelectedIndex;
         var handlers = AppVM.AssetHandlerVM.Handlers;
         foreach (var (handlerType, handlerData) in handlers)
@@ -62,12 +62,12 @@ public partial class MainView
                 handlerData.PauseState.Pause();
             }
         }
-        
+
         if (!handlers[assetType].HasStarted)
         {
             await handlers[assetType].Execute();
         }
-        
+
         DiscordService.Update(assetType);
         AppVM.MainVM.CurrentAssetType = assetType;
     }

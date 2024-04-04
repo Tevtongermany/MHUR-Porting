@@ -23,6 +23,8 @@ using CUE4Parse.UE4.Objects.Core.i18N;
 using MHURPorting.AppUtils;
 using MHURPorting.Views.Controls;
 using SharpGLTF.Schema2;
+using System.Windows.Markup;
+using CUE4Parse.FileProvider.Objects;
 
 namespace MHURPorting.ViewModels;
 
@@ -68,6 +70,7 @@ public class AssetHandlerViewModel
 }
 
 
+
 public class AssetHandlerData
 {
     public bool HasStarted { get; private set; }
@@ -90,11 +93,16 @@ public class AssetHandlerData
 
             foreach (var tagsAndValue in variable.TagsAndValues)
             {
-                // ClassNames.Contains(tagsAndValue.Value) &&
                 if (tagsAndValue.Key.PlainText == "Skeleton" && variable.AssetName.ToString().StartsWith("SK_Ch"))
                 {
-                    Console.WriteLine($"File {variable.AssetName} typ {tagsAndValue}");
-                    items.Add(variable);
+
+                    var exist = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(variable.ObjectPath); // check if the model actually exists didn't find any better solution :(
+                    if (exist is not null)
+                    {
+                        Console.WriteLine($"File {variable.AssetName} typ {tagsAndValue}");
+                        items.Add(variable);
+                    }
+
                 }
                 
                 
@@ -114,9 +122,10 @@ public class AssetHandlerData
         Console.WriteLine(data.PackageName);
         UObject Asset = new UObject();
         UTexture2D fake = new UTexture2D();
+        string stupidname = data.AssetName.ToString();
         Asset = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(data.ObjectPath);
         fake.Name = "kys";
-        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Asset, Asset, new UTexture2D(), false)), DispatcherPriority.Background);
+        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Asset, Asset, new UTexture2D(), stupidname, false)), DispatcherPriority.Background);
 
 
     }
@@ -157,6 +166,6 @@ public class AssetHandlerData
         }
         var previewImage = IconGetter(uiAsset);
         if (previewImage is null) return;
-        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(actualAsset, uiAsset, mainA, previewImage, random)), DispatcherPriority.Background);
+        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(actualAsset, uiAsset, mainA, previewImage,"d", random)), DispatcherPriority.Background);
     }
 }
