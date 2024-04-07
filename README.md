@@ -2,7 +2,7 @@
  # how to use
  1. Download the program
  2. Download the blender addon USE BLENDER 4.0.0!!!!!
- 3. install the addon in blender Edit -> prefrences -> addons -> install Addon
+ 3. install the addon in blender Edit -> preferences -> addons -> install -> MHURPortingBlender.zip
  4. Start the program
  5. Select your My hero ultra rumble install path
  6. Click Continue
