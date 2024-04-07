@@ -25,7 +25,7 @@ namespace MHURPorting.ViewModels;
 
 public class CUE4ParseViewModel : ObservableObject
 {
-    private ApiEndpointViewModel _apiEndpointView => ApplicationService.ApiEndpointView;
+
     public readonly MHURPortingFileProvider Provider;
 
     public FAssetRegistryState? AssetRegistry;
@@ -77,7 +77,7 @@ public class CUE4ParseViewModel : ObservableObject
     {
         if (installType is EInstallType.Local && !Directory.Exists(directory))
         {
-            AppLog.Warning("Installation Not Found, Valorant installation path does not exist or has not been set. Please go to settings to verify you've set the right path and restart. The program will not work properly on Local Installation mode if you do not set it.");
+            AppLog.Warning("Installation Not Found, MHUR installation path does not exist or has not been set. Please go to settings to verify you've set the right path and restart. The program will not work properly on Local Installation mode if you do not set it.");
             return;
         }
         Provider = installType switch
@@ -133,19 +133,7 @@ public class CUE4ParseViewModel : ObservableObject
                 Provider.InitializeLocal();
                 break;
             }
-            case EInstallType.Live:
-            {
-                var manifestInfo = _apiEndpointView.ValorantApi.GetManifest(CancellationToken.None);
-                if (manifestInfo == null)
-                {
-                    throw new Exception("Could not load latest Valorant manifest, you may have to switch to your local installation.");
-                }
-                for (var i = 0; i < manifestInfo.Paks.Length; i++)
-                {
-                    Provider.Initialize(manifestInfo.Paks[i].GetFullName(), new Stream[] { manifestInfo.GetPakStream(i) });
-                }
-                break;
-            }
+           
         }
     }
 }

@@ -5,7 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
-        <ApplicationIcon>ValorantPorting.ico</ApplicationIcon>
+        <ApplicationIcon>MHURPorting.ico</ApplicationIcon>
         <RootNamespace>MHURPorting</RootNamespace>
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     </PropertyGroup>
@@ -43,6 +43,10 @@
 
     <ItemGroup>
       <Compile Remove="ViewModels\BundleDownloaderViewModel.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="MHURPorting.ico" />
     </ItemGroup>
 
 </Project>

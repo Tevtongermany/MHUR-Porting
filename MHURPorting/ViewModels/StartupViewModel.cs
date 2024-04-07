@@ -38,17 +38,24 @@ public class StartupViewModel : ObservableObject
     
     public void CheckForInstallation()
     {
-        string resultJ = "";
+        bool found_install = false;
         foreach (var drive in DriveInfo.GetDrives())
         {
-            var launcherInstalledPath = $"{drive.Name}ProgramData\\Riot Games\\Metadata\\valorant.live\\valorant.live.product_settings.yaml";
-            if (!File.Exists(launcherInstalledPath)) continue;
-            var ymlContents = File.ReadAllText(launcherInstalledPath);
-            Regex cusRegex = new Regex("product_install_full_path: .*");
-            resultJ = cusRegex.Match(ymlContents).Value.Replace("product_install_full_path: ", string.Empty).Replace("\"", "");
+            var launcherInstalledPath = $"{drive.Name}Program Files (x86)\\Steam\\steamapps\\common\\My Hero Ultra Rumble\\HerovsGame\\Content\\Paks";
+            if (Directory.Exists(launcherInstalledPath))
+            {
+                found_install = true;
+                ArchivePath = launcherInstalledPath;
+                Log.Information("Found Install at {0} :D",ArchivePath);
+                break;
+
+            }
         }
-        ArchivePath = resultJ.Replace("\r","") + "/ShooterGame/Content/Paks";
-        Log.Information("Detected VALORANT Installation at {0}", ArchivePath);
+        if (!found_install) {
+            ArchivePath = "My Hero Ultra Rumble/HerovsGame/Content/Paks";
+            Log.Information("No install found!");
+        }
+
     }
     
 }

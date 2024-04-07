@@ -3,7 +3,7 @@ import json
 import os
 import socket
 import threading
-from io_import_scene_unreal_psa_psk_280 import pskimport
+from .io_import_scene_unreal_psa_psk_400 import pskimport
 
 bl_info = {
     "name": "MHUR Porting",

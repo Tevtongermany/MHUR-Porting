@@ -476,19 +476,19 @@
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <DataTrigger Binding="{Binding AssetType}" Value="{x:Static local:ETreeItemType.Folder}">
-                                        <Setter TargetName="ItemIcon" Property="Source" Value="/ValorantPorting;component/Resources/Folder.png"></Setter>
+                                        <Setter TargetName="ItemIcon" Property="Source" Value="/MHURPorting;component/Resources/Folder.png"></Setter>
                                     </DataTrigger>
 
                                     <DataTrigger Binding="{Binding AssetType}" Value="{x:Static local:ETreeItemType.Asset}">
-                                        <Setter TargetName="ItemIcon" Property="Source" Value="/ValorantPorting;component/Resources/Mesh.png"></Setter>
+                                        <Setter TargetName="ItemIcon" Property="Source" Value="/MHURPorting;component/Resources/Mesh.png"></Setter>
                                     </DataTrigger>
 
                                     <DataTrigger Binding="{Binding Header}" Value="Engine">
-                                        <Setter TargetName="ItemIcon" Property="Source" Value="/ValorantPorting;component/Resources/Unreal.png"></Setter>
+                                        <Setter TargetName="ItemIcon" Property="Source" Value="/MHURPorting;component/Resources/Unreal.png"></Setter>
                                     </DataTrigger>
 
                                     <DataTrigger Binding="{Binding Header}" Value="Weapon">
-                                        <Setter TargetName="ItemIcon" Property="Source" Value="/ValorantPorting;component/Resources/Weapon.png"></Setter>
+                                        <Setter TargetName="ItemIcon" Property="Source" Value="/MHURPorting;component/Resources/Weapon.png"></Setter>
                                     </DataTrigger>
 
                                     <Trigger Property="IsExpanded" Value="False">

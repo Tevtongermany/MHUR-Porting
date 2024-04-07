@@ -15,11 +15,12 @@ public class ApiEndpointViewModel
         MaxTimeout = 3 * 1000
     });
     
-    public ValorantApiEndpoint ValorantApi { get; }
+    public 
+        ApiEndpoint ValorantApi { get; }
     
     public ApiEndpointViewModel()
     {
-        ValorantApi = new ValorantApiEndpoint(_client);
+        ValorantApi = "f";
     }
 
     public async Task DownloadFileAsync(string fileLink, string installationPath)
@@ -32,5 +33,13 @@ public class ApiEndpointViewModel
     public void DownloadFile(string fileLink, string installationPath)
     {
         DownloadFileAsync(fileLink, installationPath).GetAwaiter().GetResult();
+    }
+}
+
+public class ApiEndpoint
+{
+    public static implicit operator ApiEndpoint(string v)
+    {
+        throw new NotImplementedException();
     }
 }

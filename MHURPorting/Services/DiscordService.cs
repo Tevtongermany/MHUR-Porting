@@ -13,7 +13,7 @@ public static class DiscordService
     
     private static DiscordRpcClient? Client;
     
-    private static readonly Assets Assets = new() { LargeImageKey = "icon",SmallImageKey = "icon" , LargeImageText = "Valorant Porting"};
+    private static readonly Assets Assets = new() { LargeImageKey = "icon",SmallImageKey = "icon" , LargeImageText = "MHUR Porting"};
     
     private static readonly Timestamps Timestamp = new() { Start = DateTime.UtcNow };
 

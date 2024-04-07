@@ -31,7 +31,7 @@ public partial class AppSettings : ObservableObject
     }
 
     [ObservableProperty] 
-    private string archivePath;
+    private string? archivePath;
     
     [ObservableProperty] 
     private ELanguage language;
