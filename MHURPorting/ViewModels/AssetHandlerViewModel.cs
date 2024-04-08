@@ -90,16 +90,17 @@ public class AssetHandlerData
         Console.WriteLine("Loading asset thinge bingie idfk");
         foreach (var variable in AppVM.CUE4ParseVM.AssetRegistry.PreallocatedAssetDataBuffers) //search for Classes in AssetRegistry
         {
-
+            
             foreach (var tagsAndValue in variable.TagsAndValues)
             {
-                if (tagsAndValue.Key.PlainText == "Skeleton" && variable.AssetName.ToString().StartsWith("SK_Ch"))
+                
+                if (tagsAndValue.Key.PlainText == "PrimaryAssetType" && tagsAndValue.Value == "Character")
                 {
-
+                    Console.WriteLine(tagsAndValue);
                     var exist = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(variable.ObjectPath); // check if the model actually exists didn't find any better solution :(
                     if (exist is not null)
                     {
-                        Console.WriteLine($"File {variable.AssetName} typ {tagsAndValue}");
+                        Console.WriteLine($"File {variable.AssetName} assetclass {variable.AssetClass}");
                         items.Add(variable);
                     }
 

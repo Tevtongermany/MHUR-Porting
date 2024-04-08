@@ -72,7 +72,7 @@ public class CUE4ParseViewModel : ObservableObject
         "PlaysetGrenade",
         "NaniteDisplacement"
     };
-    
+
     public CUE4ParseViewModel(string directory, EInstallType installType)
     {
         if (installType is EInstallType.Local && !Directory.Exists(directory))
@@ -80,13 +80,9 @@ public class CUE4ParseViewModel : ObservableObject
             AppLog.Warning("Installation Not Found, MHUR installation path does not exist or has not been set. Please go to settings to verify you've set the right path and restart. The program will not work properly on Local Installation mode if you do not set it.");
             return;
         }
-        Provider = installType switch
-        {
-            EInstallType.Local => new MHURPortingFileProvider(new DirectoryInfo(directory), SearchOption.AllDirectories, true, Version),
-            EInstallType.Live => new MHURPortingFileProvider(true, Version),
-        };
+        Provider = new MHURPortingFileProvider(new DirectoryInfo(directory), SearchOption.AllDirectories, true, Version);
     }
-    
+
     public async Task Initialize()
     {
         if (Provider is null) return;

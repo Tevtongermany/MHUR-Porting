@@ -7,9 +7,9 @@ from .io_import_scene_unreal_psa_psk_400 import pskimport
 
 bl_info = {
     "name": "MHUR Porting",
-    "author": "Half",
+    "author": "Tevtongermany",
     "version": (1, 0, 0),
-    "blender": (3, 0, 0),
+    "blender": (4, 0, 0),
     "description": "Blender Server for MHUR Porting",
     "category": "Import",
 }

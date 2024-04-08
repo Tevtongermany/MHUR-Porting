@@ -14,6 +14,7 @@ using CUE4Parse.UE4.Objects.Core.i18N;
 using CUE4Parse.UE4.Objects.Engine;
 using CUE4Parse.UE4.Objects.UObject;
 using MHURPorting.Views.Extensions;
+using DiscordRPC;
 
 namespace MHURPorting.Export;
 
@@ -63,7 +64,11 @@ public class ExportData
                 case EAssetType.Character:
                 {
 
-                        ExportHelpers.Mesh(asset as USkeletalMesh, data.Parts);
+                        var costume = asset.GetOrDefault("Name", new FText("Unnamed"));
+                        
+                        Console.WriteLine(costume);
+                        //var skeletonmesh = (USkeletalMesh)costume[0];
+                        //ExportHelpers.Mesh(skeletonmesh, data.Parts);
                         //var meshes = new UObject[3];
                         //asset.TryGetValue(out meshes[0], "MeshOverlay1P");
                         //if (meshes[0].Properties.Count < 2)

@@ -7,8 +7,6 @@ public enum EInstallType
     [Description("Local")]
     Local,
     
-    [Description("Valorant [Live]")]
-    Live
 }
 
 public enum ERichPresenceAccess
