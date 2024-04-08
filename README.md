@@ -14,4 +14,4 @@
 https://youtu.be/UEwQlTTJ0b4
 
 
-![all might plush](https://github.com/Tevtongermany/MHUR-Porting/assets/59411880/18682a1d-fc96-4a46-a01e-1217966d9759)
+![all might plushy](https://github.com/Tevtongermany/MHUR-Porting/assets/59411880/18682a1d-fc96-4a46-a01e-1217966d9759)
