@@ -9,7 +9,7 @@ public static class Globals
 {
     public static readonly string APP_VERSION = "1.0.0";
 
-    public const string DISCORD_URL = "https://discord.gg/RcERx28W96";
+    public const string DISCORD_URL = "https://discord.gg/zfvGEZTrG7";
     public const string GITHUB_URL = "https://github.com/Tevtongermany/MHUR-Porting";
 
     public const int BLENDER_PORT = 24283;

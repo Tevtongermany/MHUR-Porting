@@ -122,11 +122,24 @@ public class AssetHandlerData
     {
         Console.WriteLine(data.PackageName);
         UObject Asset = new UObject();
-        UTexture2D fake = new UTexture2D();
         string stupidname = data.AssetName.ToString();
+
+        var Image_asset= $"{data.PackagePath}/{data.AssetName}_GUI.{data.AssetName}_GUI";
+        Console.WriteLine($"{data.ObjectPath} {Image_asset}");
+
+        var Loaded_Image_Asset = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(Image_asset);
+        if (Loaded_Image_Asset is null)
+        {
+            return;
+        }
+
+        var Loaded_Image_Texture = Loaded_Image_Asset.Properties.ToArray();
+        //var Character_Image_Sprite = Loaded_Image_Asset.GetOrDefault<UScriptClass>("_charaSelect", "PaperSprite");
+        var Character_Image_Sprite = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(Loaded_Image_Texture[0].Tag.GenericValue.ToString());
+        var Character_Image_Texture = Character_Image_Sprite.GetOrDefault<UTexture2D>("BakedSourceTexture");
         Asset = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(data.ObjectPath);
-        fake.Name = "kys";
-        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Asset, Asset, new UTexture2D(), stupidname, false)), DispatcherPriority.Background);
+
+        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Asset, Asset, Character_Image_Texture, stupidname, false)), DispatcherPriority.Background);
 
 
     }
