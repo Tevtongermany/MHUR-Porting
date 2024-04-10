@@ -97,6 +97,7 @@ public partial class MainView
         var selected = (AssetSelectorItem)listBox.SelectedItem;
         AppVM.MainVM.Styles.Clear();
         AppVM.MainVM.CurrentAsset = selected;
+        
         var current_asset = selected;
         var styles = selected.MainAsset.GetOrDefault<UScriptMap>("_costumeMeshs").Properties.ToArray();
         var NStyles = new List<UObject>();
@@ -117,7 +118,12 @@ public partial class MainView
             }
 
         }
-
+        NStyles.Reverse();
+        NSkeleton.Reverse();
+        var styleSelector = new StyleSelector(NStyles.ToArray(), NSkeleton.ToArray());
+        if (styleSelector.Options.Items.Count == 0) return;
+        AppVM.MainVM.Styles.Add(styleSelector);
+        Console.WriteLine("Added Style");
     }
 
     private void StupidIdiotBadScroll(object sender, MouseWheelEventArgs e)
