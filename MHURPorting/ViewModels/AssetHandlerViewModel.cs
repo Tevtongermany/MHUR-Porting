@@ -25,6 +25,8 @@ using MHURPorting.Views.Controls;
 using SharpGLTF.Schema2;
 using System.Windows.Markup;
 using CUE4Parse.FileProvider.Objects;
+using CUE4Parse_Conversion.Textures;
+using SkiaSharp;
 
 namespace MHURPorting.ViewModels;
 
@@ -138,8 +140,12 @@ public class AssetHandlerData
         var Character_Image_Sprite = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(Loaded_Image_Texture[0].Tag.GenericValue.ToString());
         var Character_Image_Texture = Character_Image_Sprite.GetOrDefault<UTexture2D>("BakedSourceTexture");
         Asset = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(data.ObjectPath);
+       
+        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Loaded_Image_Asset, Asset, Character_Image_Texture, stupidname, false)), DispatcherPriority.Background);
 
-        await Application.Current.Dispatcher.InvokeAsync(() => TargetCollection.Add(new AssetSelectorItem(Asset, Asset, Asset, Character_Image_Texture, stupidname, false)), DispatcherPriority.Background);
+
+
+
 
 
     }

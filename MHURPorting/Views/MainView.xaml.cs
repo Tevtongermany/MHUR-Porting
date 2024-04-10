@@ -19,6 +19,7 @@ using MHURPorting.Export.Blender;
 using MHURPorting.Views.Extensions;
 using Serilog;
 using StyleSelector = MHURPorting.Views.Controls.StyleSelector;
+using CUE4Parse.UE4.Assets.Exports.SkeletalMesh;
 
 namespace MHURPorting.Views;
 
@@ -94,26 +95,29 @@ public partial class MainView
         if (sender is not ListBox listBox) return;
         if (listBox.SelectedItem is null) return;
         var selected = (AssetSelectorItem)listBox.SelectedItem;
-        
+        AppVM.MainVM.Styles.Clear();
         AppVM.MainVM.CurrentAsset = selected;
-        //AppVM.MainVM.Styles.Clear();
-        //var styles = selected.MainAsset.GetOrDefault("Chromas", Array.Empty<UObject>());
-        //var NStyles = new List<UObject>();
-        //foreach (UBlueprintGeneratedClass VARIABLE in styles)
-        //{
-        //    if (VARIABLE == null)
-        //    {
-        ////        continue;
-        //    }
-        //    var CDO = VARIABLE.ClassDefaultObject.Load();
-        //    var channel = CDO.GetOrDefault("UIData", new UObject());
-        //    var bpChannel = (UBlueprintGeneratedClass)channel;
-        //    var UIData = await ExportData.CreateUiData(bpChannel);
-        //    NStyles.Add(UIData);
-        //}
-        //var styleSelector = new StyleSelector(NStyles.ToArray(),styles);
-        //if (styleSelector.Options.Items.Count == 0) return;
-        //AppVM.MainVM.Styles.Add(styleSelector);
+        var current_asset = selected;
+        var styles = selected.MainAsset.GetOrDefault<UScriptMap>("_costumeMeshs").Properties.ToArray();
+        var NStyles = new List<UObject>();
+        var NSkeleton = new List<UObject>();
+        foreach (var skeletons in styles)
+        {
+            if (current_asset != selected)
+            {
+                AppVM.MainVM.Styles.Clear();
+            }
+            Console.WriteLine("doing Style thingie {0}", skeletons);
+            var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(skeletons.Value.GenericValue.ToString());
+            if (skeleton is not null) 
+            {
+                Console.WriteLine("added skeleton");
+                NStyles.Add(selected.UIAsset);
+                NSkeleton.Add(skeleton);
+            }
+
+        }
+
     }
 
     private void StupidIdiotBadScroll(object sender, MouseWheelEventArgs e)

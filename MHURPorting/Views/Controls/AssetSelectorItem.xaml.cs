@@ -35,7 +35,7 @@ public partial class AssetSelectorItem  : IExportableAsset
     {
         InitializeComponent();
         DataContext = this;
-        UIAsset = asset;
+        UIAsset = UIasset;
         Asset = asset;
         MainAsset = MainDataAsset;
         DisplayName = CharacterDisplayName;

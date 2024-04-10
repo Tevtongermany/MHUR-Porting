@@ -27,9 +27,16 @@ public partial class StyleSelector
         for (int i = 0; i < options.Length; i++)
         {
             UObject uiData = options[i];
-            uiData.TryGetValue(out FText channel, "DisplayName");
-            if (!uiData.TryGetValue(out UTexture2D previewTexture, "Swatch")) return;
-            var previewBitmap = previewTexture.Decode();
+            var Loaded_Image_Texture = uiData.Properties.ToArray();
+            //var Character_Image_Sprite = Loaded_Image_Asset.GetOrDefault<UScriptClass>("_charaSelect", "PaperSprite");
+            var Character_Image_Sprite = AppVM.CUE4ParseVM.Provider.TryLoadObject(Loaded_Image_Texture[0].Tag.GenericValue.ToString(),out UObject exporting);
+            var Character_Image_Texture = exporting.GetOrDefault<UTexture2D>("BakedSourceTexture");
+            if (Character_Image_Texture is null)
+            {
+                return;
+            } 
+                
+            var previewBitmap = Character_Image_Texture.Decode();
             if (previewBitmap is null) continue;
 
             var fullBitmap = new SKBitmap(previewBitmap.Width, previewBitmap.Height, previewBitmap.ColorType,
@@ -40,7 +47,7 @@ public partial class StyleSelector
                 fullCanvas.DrawBitmap(previewBitmap, 0, 0);
             }
 
-            Options.Items.Add(new StyleSelectorItem(actualObjects[i],uiData,channel.ToString(), fullBitmap));
+            Options.Items.Add(new StyleSelectorItem(actualObjects[i],uiData,"d", fullBitmap));
         }
 
         Options.SelectedIndex = 0;

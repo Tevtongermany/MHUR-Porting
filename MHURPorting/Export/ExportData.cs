@@ -66,8 +66,8 @@ public class ExportData
 
                         var costume = asset.GetOrDefault<UScriptMap>("_costumeMeshs").Properties;
 
-                        var to_export = AppVM.CUE4ParseVM.Provider.LoadObject(costume.ToArray()[0].Value.GenericValue.ToString());
-                        ExportHelpers.Mesh(to_export as USkeletalMesh, data.Parts);
+                        //var to_export = AppVM.CUE4ParseVM.Provider.LoadObject(costume.ToArray()[0].Value.GenericValue.ToString());
+                        ExportHelpers.Mesh(style as USkeletalMesh, data.Parts);
                         //var skeletonmesh = (USkeletalMesh)costume[0];
                         //ExportHelpers.Mesh(skeletonmesh, data.Parts);
                         //var meshes = new UObject[3];

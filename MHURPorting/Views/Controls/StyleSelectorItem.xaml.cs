@@ -4,8 +4,11 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using CUE4Parse.UE4.Assets.Exports;
+using CUE4Parse.UE4.Assets.Exports.Texture;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Objects.Core.i18N;
+using CUE4Parse_Conversion.Sounds;
+using CUE4Parse_Conversion.Textures;
 using MHURPorting.Views.Extensions;
 using SkiaSharp;
 

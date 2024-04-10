@@ -24,7 +24,6 @@ using MHURPorting.Services;
 using MHURPorting.Views;
 using MHURPorting.Views.Controls;
 using MHURPorting.Export.Unreal;
-using Controls_StyleSelector = MHURPorting.Views.Controls.StyleSelector;
 using StyleSelector = MHURPorting.Views.Controls.StyleSelector;
 
 namespace MHURPorting.ViewModels;
@@ -52,7 +51,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private ObservableCollection<AssetSelectorItem> gunbuddies = new();
     //[ObservableProperty] private ObservableCollection<AssetSelectorItem> abilities = new();
     [ObservableProperty] private ObservableCollection<AssetSelectorItem> maps = new();
-    [ObservableProperty] private ObservableCollection<Controls_StyleSelector> styles = new();
+    [ObservableProperty] private ObservableCollection<StyleSelector> styles = new();
     [ObservableProperty] private SuppressibleObservableCollection<TreeItem> meshes = new();
     [ObservableProperty] private SuppressibleObservableCollection<AssetItem> assets = new();
 
