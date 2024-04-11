@@ -27,10 +27,7 @@ public partial class StyleSelector
         for (int i = 0; i < options.Length; i++)
         {
             UObject uiData = options[i];
-            var Loaded_Image_Texture = uiData.Properties.ToArray();
-            //var Character_Image_Sprite = Loaded_Image_Asset.GetOrDefault<UScriptClass>("_charaSelect", "PaperSprite");
-            var Character_Image_Sprite = AppVM.CUE4ParseVM.Provider.TryLoadObject(Loaded_Image_Texture[0].Tag.GenericValue.ToString(),out UObject exporting);
-            var Character_Image_Texture = exporting.GetOrDefault<UTexture2D>("BakedSourceTexture");
+            var Character_Image_Texture = uiData as UTexture2D;
             if (Character_Image_Texture is null)
             {
                 return;
