@@ -10,6 +10,7 @@ using CUE4Parse.UE4.Assets.Exports.Texture;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Objects.Core.i18N;
 using CUE4Parse.UE4.Objects.Engine;
+using Newtonsoft.Json;
 using MHURPorting.AppUtils;
 using MHURPorting.Services;
 using MHURPorting.ViewModels;
@@ -20,8 +21,11 @@ using MHURPorting.Views.Extensions;
 using Serilog;
 using StyleSelector = MHURPorting.Views.Controls.StyleSelector;
 using CUE4Parse.UE4.Assets.Exports.SkeletalMesh;
+using MHURPorting.models;
 using System.Drawing;
 using CUE4Parse.UE4.Assets.Exports.Animation;
+using System.IO;
+using Microsoft.VisualBasic;
 
 namespace MHURPorting.Views;
 
@@ -97,18 +101,6 @@ public partial class MainView
     private async void OnAssetSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
-        var Assetlist = new List<string>();
-
-
-        Assetlist.Add("000000");
-        Assetlist.Add("003100");
-        Assetlist.Add("006100");
-        Assetlist.Add("100100");
-        Assetlist.Add("200100");
-        Assetlist.Add("300100");
-        Assetlist.Add("301100");
-        Assetlist.Add("302100");
-        Assetlist.Add("402100");
 
         if (sender is not ListBox listBox) return;
         if (listBox.SelectedItem is null) return;
@@ -120,7 +112,12 @@ public partial class MainView
         var validstyles = new List<UObject>();
         var NStyles = new List<UObject>();
         var NSkeleton = new List<UObject>();
-        var index = 0;
+        var selected_character_id = selected.Asset.Name.Substring(3, 5);
+        var characterID = selected.UIAsset.Name.Substring(3, 5);
+        var stringID = selected.UIAsset.Name.Substring(5, 3);
+        int intID = 0;
+        int.TryParse(stringID, out intID);
+
         foreach (var validskeleton in styles)
         {
             var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(validskeleton.Value.GenericValue.ToString());
@@ -130,43 +127,35 @@ public partial class MainView
             }
         }
 
-        foreach (var skeletons in validstyles)
+        MHURPortingDefault style = JsonConvert.DeserializeObject<MHURPortingDefault>(File.ReadAllText("MHURPortingDefault.json"));
+
+
+        foreach (var character in style.Character)
         {
-            Console.WriteLine("Inserting Styles into list {0}", skeletons);
-            var characterID = selected.UIAsset.Name.Substring(3, 5);
-            var stringID = selected.UIAsset.Name.Substring(5, 3);
-            int intID = 0;
-            int.TryParse(stringID, out intID);
-            Console.WriteLine($"{characterID} {characterID} {stringID} {intID}");
-            var formatted_image_path = $"/Game/Character/{characterID}" +
-                $"/GUI/Costume/S/T_ui_Thumb_4_{intID}{Assetlist[index]}_S.T_ui_Thumb_4_{intID}{Assetlist[index]}_S";
-            Console.WriteLine($"{characterID} {characterID} {stringID} {intID}");
-            var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync(formatted_image_path);
-            if (image is null)
+            if (character.ID == selected_character_id)
             {
-                var fallback = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync("/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12101103_S.T_ui_Thumb_4_12101103_S");
-                NStyles.Add(image);
+                if (character.styles.Count is 0)
+                {
+                    break;
+                }
+                foreach (MHURStyle styledef in character.styles)
+                {
+                    
+                    var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(styledef.styles.SkeletonPath);
+                    var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(styledef.styles.StyleImagePath);
+                    if (skeleton is not null && image is not null)
+                    {
+                        NStyles.Add(image);
+                        NSkeleton.Add(skeleton);
+                    }
+                }
             }
-            else
-            {
-                NStyles.Add(image);
-            }
-            Console.WriteLine(image);
-            Console.WriteLine("added skeleton");
-            NSkeleton.Add(skeletons);
-
-
-
-
-
-            index++;
         }
 
         var styleSelector = new StyleSelector(NStyles.ToArray(), NSkeleton.ToArray());
         if (styleSelector.Options.Items.Count == 0) return;
         AppVM.MainVM.Styles.Add(styleSelector);
         Console.WriteLine("Added Style");
-        index = 0;
     }
 
     private void StupidIdiotBadScroll(object sender, MouseWheelEventArgs e)

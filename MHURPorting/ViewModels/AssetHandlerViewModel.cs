@@ -27,6 +27,9 @@ using System.Windows.Markup;
 using CUE4Parse.FileProvider.Objects;
 using CUE4Parse_Conversion.Textures;
 using SkiaSharp;
+using MHURPorting.models;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace MHURPorting.ViewModels;
 
@@ -124,7 +127,18 @@ public class AssetHandlerData
     {
         Console.WriteLine(data.PackageName);
         UObject Asset = new UObject();
-        string stupidname = data.AssetName.ToString();
+        MHURPortingDefault style = JsonConvert.DeserializeObject<MHURPortingDefault>(File.ReadAllText("MHURPortingDefault.json"));
+        string stupidname = "";
+        var selected_character_id = data.AssetName.ToString().Substring(3, 5);
+        foreach (var character in style.Character)
+        {
+            if (character.ID == selected_character_id)
+            {
+                stupidname = character.Name;
+                break;
+            }
+        }
+        
 
         var Image_asset= $"{data.PackagePath}/{data.AssetName}_GUI.{data.AssetName}_GUI";
         Console.WriteLine($"{data.ObjectPath} {Image_asset}");

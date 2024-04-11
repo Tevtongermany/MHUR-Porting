@@ -1,0 +1,164 @@
+{
+    "character": [
+        {
+            "CharacterID": "Ch001",
+            "CharacterName": "Izuku Midoriya",
+            "Styles": [
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Default/Mesh/SK_Ch001_Default_00.SK_Ch001_Default_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1000000_S.T_ui_Thumb_4_1000000_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/B1_00/Mesh/SK_Ch001_SpB1_00.SK_Ch001_SpB1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1301100_S.T_ui_Thumb_4_1301100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Us/C1_00/Mesh/SK_Ch001_UsC1_00.SK_Ch001_UsC1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1402100_S.T_ui_Thumb_4_1402100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/C1_00/Mesh/SK_Ch001_SpC1_00.SK_Ch001_SpC1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1302100_S.T_ui_Thumb_4_1302100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/A1_00/Mesh/SK_Ch001_SpA1_00.SK_Ch001_SpA1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1300100_S.T_ui_Thumb_4_1300100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Js/A1_00/Mesh/SK_Ch001_JsA1_00.SK_Ch001_JsA1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1200100_S.T_ui_Thumb_4_1200100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Fm/A1_00/Mesh/SK_Ch001_FmA1_00.SK_Ch001_FmA1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1100100_S.T_ui_Thumb_4_1100100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Eq/G1_00/Mesh/SK_Ch001_EqG1_00.SK_Ch001_EqG1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1006100_S.T_ui_Thumb_4_1006100_S"
+                    }
+                },
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch001/Model/Eq/D1_00/Mesh/SK_Ch001_EqD1_00.SK_Ch001_EqD1_00",
+                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1003100_S.T_ui_Thumb_4_1003100_S"
+                    }
+                }
+            ]
+        },
+        {
+            "CharacterID": "Ch002",
+            "CharacterName": "Katsuki Bakugo",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch003",
+            "CharacterName": "Ochaco Uraraka",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch005",
+            "CharacterName": "Tenya Iida",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch004",
+            "CharacterName": "Shoto Todoroki",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch006",
+            "CharacterName": "Tsuyu Asui",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch008",
+            "CharacterName": "Eijiro Kirishima",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch010",
+            "CharacterName": "Momo Yaoyorozu",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch007",
+            "CharacterName": "Denki Kaminari",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch046",
+            "CharacterName": "Itsuka Kendo",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch102",
+            "CharacterName": "Ibara Shiozaki",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch012",
+            "CharacterName": "All Might",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch013",
+            "CharacterName": "Shota Aizawa",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch101",
+            "CharacterName": "Cementos",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch023",
+            "CharacterName": "Endeavor",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch100",
+            "CharacterName": "Mt. Lady",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch015",
+            "CharacterName": "Tomura Shigaraki",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch017",
+            "CharacterName": "Dabi",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch018",
+            "CharacterName": "Himiko Toga",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch037",
+            "CharacterName": "Jin Bubaigawara",
+            "Styles": []
+        },
+        {
+            "CharacterID": "Ch038",
+            "CharacterName": "Mr. Compress",
+            "Styles": []
+        }
+    ]
+}
