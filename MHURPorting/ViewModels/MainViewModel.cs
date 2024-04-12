@@ -38,11 +38,11 @@ public partial class MainViewModel : ObservableObject
     private IExportableAsset? currentAsset;
 
     [ObservableProperty] 
-    //[NotifyPropertyChangedFor(nameof(StyleImage))] 
+    [NotifyPropertyChangedFor(nameof(StyleImage))] 
     [NotifyPropertyChangedFor(nameof(StyleVisibility))]
     private List<IExportableAsset> extendedAssets = new();
     
-    //public ImageSource StyleImage => currentAsset.FullSource;
+    public ImageSource StyleImage;
     public Visibility StyleVisibility => currentAsset is null ? Visibility.Collapsed : Visibility.Visible;
 
     [ObservableProperty] private ObservableCollection<AssetSelectorItem> outfits = new();
@@ -55,6 +55,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private SuppressibleObservableCollection<TreeItem> meshes = new();
     [ObservableProperty] private SuppressibleObservableCollection<AssetItem> assets = new();
 
+
+    public Stopwatch usetime = new();
     [ObservableProperty] 
     [NotifyPropertyChangedFor(nameof(LoadingVisibility))]
     private bool isReady;
@@ -76,6 +78,7 @@ public partial class MainViewModel : ObservableObject
         {
             var loadTime = new Stopwatch();
             loadTime.Start();
+            usetime.Start();
 
             AppVM.CUE4ParseVM = new CUE4ParseViewModel(AppSettings.Current.ArchivePath, AppSettings.Current.InstallType);
             await AppVM.CUE4ParseVM.Initialize();

@@ -49,6 +49,12 @@ public partial class App
     {
         base.OnExit(e);
         FreeConsole();
+        
+        float current_time_float = 0.0f;
+        float.TryParse(AppVM.MainVM.usetime.Elapsed.TotalSeconds.ToString(), out current_time_float);
+        Int64 current_time = (Int64)current_time_float; // Convert float to int
+        AppSettings.Current.UseTime = AppSettings.Current.UseTime + current_time; // Update AppSettings.Current.UseTime with the converted value
+        AppVM.MainVM.usetime.Stop();
         AppSettings.Save();
     }
 
@@ -64,7 +70,12 @@ public partial class App
             Buttons = new[] {MessageBoxButtons.Ok()}
         };
         MessageBox.Show(messageBox);
-
+        float current_time_float = 0.0f;
+        float.TryParse(AppVM.MainVM.usetime.Elapsed.TotalSeconds.ToString(), out current_time_float);
+        Int64 current_time = (Int64)current_time_float; // Convert float to int
+        AppSettings.Current.UseTime = AppSettings.Current.UseTime + current_time; // Update AppSettings.Current.UseTime with the converted value
+        AppVM.MainVM.usetime.Stop();
+        AppSettings.Save();
         e.Handled = true;
     }
 }

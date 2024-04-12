@@ -44,4 +44,7 @@ public partial class AppSettings : ObservableObject
     
     [ObservableProperty] 
     private AesResponse aesResponse;
+
+    [ObservableProperty]
+    private Int64 useTime;
 }

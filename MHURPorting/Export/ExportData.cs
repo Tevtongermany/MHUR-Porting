@@ -65,9 +65,12 @@ public class ExportData
                 {
                         Console.WriteLine(style);
                         var costume = asset.GetOrDefault<UScriptMap>("_costumeMeshs").Properties;
+                        var defaultMesh = costume.FirstOrDefault(x => x.Value.GenericValue.ToString().Contains("Default_00"));
+
+
                         if (style is null)
                         {
-                            var to_export = AppVM.CUE4ParseVM.Provider.LoadObject(costume.ToArray()[0].Value.GenericValue.ToString());
+                            var to_export = AppVM.CUE4ParseVM.Provider.LoadObject(defaultMesh.Value.GenericValue.ToString());
                             ExportHelpers.Mesh(to_export as USkeletalMesh, data.Parts);
                         }
                         else

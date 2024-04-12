@@ -40,7 +40,7 @@ public partial class AssetSelectorItem  : IExportableAsset
         MainAsset = MainDataAsset;
         DisplayName = CharacterDisplayName;
         Description = "skin";
-        ID = "No";
+        ID = asset.Name;
 
         TooltipName = $"{DisplayName} ({ID})";
         IsRandom = isRandomSelector;
@@ -49,19 +49,20 @@ public partial class AssetSelectorItem  : IExportableAsset
         
         if (iconBitmap is null) return;
         IconBitmap = iconBitmap;
-        
+
         FullBitmap = new SKBitmap(iconBitmap.Width, iconBitmap.Height, iconBitmap.ColorType, iconBitmap.AlphaType);
         using (var fullCanvas = new SKCanvas(FullBitmap))
         {
             fullCanvas.DrawBitmap(iconBitmap, 0, 0);
         }
-        
-        FullSource = new BitmapImage { CacheOption = BitmapCacheOption.OnDemand};
+
+        FullSource = new BitmapImage { CacheOption = BitmapCacheOption.OnDemand };
         FullSource.BeginInit();
         FullSource.StreamSource = FullBitmap.Encode(SKEncodedImageFormat.Png, 100).AsStream();
         FullSource.EndInit();
 
         DisplayImage.Source = FullSource;
+
         //BeginAnimation(OpacityProperty, AppearAnimation);
     }
     public bool Match(string filter, bool useRegex = false)

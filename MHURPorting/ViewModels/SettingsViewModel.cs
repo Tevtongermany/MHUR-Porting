@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CUE4Parse.UE4.Versions;
 using MHURPorting.AppUtils;
+using System;
 
 namespace MHURPorting.ViewModels;
 
@@ -20,7 +21,7 @@ public class SettingsViewModel : ObservableObject
             IsRestartRequired = true;
         }
     }
-    
+
     public string ArchivePath
     {
         get => AppSettings.Current.ArchivePath;
@@ -31,7 +32,7 @@ public class SettingsViewModel : ObservableObject
             IsRestartRequired = true;
         }
     }
-    
+
     public ELanguage Language
     {
         get => AppSettings.Current.Language;
@@ -42,7 +43,7 @@ public class SettingsViewModel : ObservableObject
             IsRestartRequired = true;
         }
     }
-    
+
     public ERichPresenceAccess DiscordRPC
     {
         get => AppSettings.Current.DiscordRPC;
@@ -52,5 +53,17 @@ public class SettingsViewModel : ObservableObject
             OnPropertyChanged();
         }
     }
-    
+    public string useTime
+    {
+        get
+        {
+            float current_time_float = 0.0f;
+            float.TryParse(AppVM.MainVM.usetime.Elapsed.TotalSeconds.ToString(), out current_time_float);
+            Int64 current_time = AppSettings.Current.UseTime + (Int64)current_time_float;
+            TimeSpan timeSpan = TimeSpan.FromSeconds(current_time);
+            return $"{timeSpan.Days}:{timeSpan.Hours}:{timeSpan.Minutes}:{timeSpan.Seconds}";
+        }
+
+
+    }
 }

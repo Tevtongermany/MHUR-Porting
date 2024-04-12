@@ -102,7 +102,7 @@ class Utils:
         if os.path.exists(mesh_path + ".pskx"):
             mesh_path += ".pskx"
 
-        if not pskimport(mesh_path):
+        if not pskimport(mesh_path,bReorientBones=True):
             return None
 
         return bpy.context.active_object
@@ -141,10 +141,12 @@ class Utils:
 
         output_node = nodes.new(type="ShaderNodeOutputMaterial")
         output_node.location = (200, 0)
-
-        shader_node = nodes.new(type="ShaderNodeBsdfPrincipled")
-        shader_node.name = "Fortnite Porting"
-        #shader_node.node_tree = bpy.data.node_groups.get(shader_node.name)
+        addon_dir = os.path.dirname(os.path.splitext(__file__)[0])
+        with bpy.data.libraries.load(os.path.join(addon_dir, "MHURPortingShader.blend")) as (data_from, data_to):
+            data_to.node_groups = data_from.node_groups
+            
+        shader_node = nodes.new(type="ShaderNodeGroup")
+        shader_node.node_tree = bpy.data.node_groups.get("MHURPortingBasicToonShader")
 
         links.new(shader_node.outputs[0], output_node.inputs[0])
 
@@ -210,7 +212,6 @@ class Utils:
 
         for vector in material_data.get("Vectors"):
             vector_parameter(vector)
-
 
 
     @staticmethod

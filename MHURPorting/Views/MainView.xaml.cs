@@ -118,44 +118,36 @@ public partial class MainView
         int intID = 0;
         int.TryParse(stringID, out intID);
 
-        foreach (var validskeleton in styles)
+
+
+
+
+        await Parallel.ForEachAsync(Globals.CharacterMapping.Character, async (data, token) =>
         {
-            var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(validskeleton.Value.GenericValue.ToString());
-            if (skeleton is not null)
+            if (data.ID == selected_character_id)
             {
-                validstyles.Add(skeleton);
-            }
-        }
-
-        MHURPortingDefault style = JsonConvert.DeserializeObject<MHURPortingDefault>(File.ReadAllText("MHURPortingDefault.json"));
-
-
-        foreach (var character in style.Character)
-        {
-            if (character.ID == selected_character_id)
-            {
-                if (character.styles.Count is 0)
+                if (data.styles.Count is 0)
                 {
-                    break;
+                    return;
                 }
-                foreach (MHURStyle styledef in character.styles)
+                await Parallel.ForEachAsync(data.styles, async (data, token) =>
                 {
-                    
-                    var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(styledef.styles.SkeletonPath);
-                    var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(styledef.styles.StyleImagePath);
+
+                    var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(data.styles.SkeletonPath);
+                    var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(data.styles.StyleImagePath);
                     if (skeleton is not null && image is not null)
                     {
                         NStyles.Add(image);
                         NSkeleton.Add(skeleton);
                     }
-                }
+                });
             }
-        }
+        });
 
         var styleSelector = new StyleSelector(NStyles.ToArray(), NSkeleton.ToArray());
         if (styleSelector.Options.Items.Count == 0) return;
         AppVM.MainVM.Styles.Add(styleSelector);
-        Console.WriteLine("Added Style");
+
     }
 
     private void StupidIdiotBadScroll(object sender, MouseWheelEventArgs e)
