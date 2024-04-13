@@ -3,7 +3,11 @@ import json
 import os
 import socket
 import threading
+
 from .io_import_scene_unreal_psa_psk_400 import pskimport
+from .MHURPortingIKRig import MHURRig
+import importlib
+
 
 bl_info = {
     "name": "MHUR Porting",
@@ -104,7 +108,12 @@ class Utils:
 
         if not pskimport(mesh_path,bReorientBones=True):
             return None
+        if bpy.context.active_object.type == "ARMATURE":
+            ikrig = MHURRig.MHURRig(bpy.context.active_object)
 
+        ikrig.ApplyRig()
+
+        
         return bpy.context.active_object
 
     @staticmethod

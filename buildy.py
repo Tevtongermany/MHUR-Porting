@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 print(
@@ -20,6 +21,9 @@ if buildmode == 0:
               '-p:DebugType=None '
               '-p:DebugSymbols=false '
               '-p:IncludeNativeLibrariesForSelfExtract=true')
+    shutil.copy('./MHURPorting/MHURPortingDefault.json', './Release')
+    shutil.make_archive('./Release/MHURPortingblender', 'zip', './MHURPortingBlender/MHURPortingBlender')
+    shutil.copy('./Release/MHURPortingblender.zip', './MHURPortingBlender/MHURPortingBlender.zip')
 if buildmode == 1:
     os.system('dotnet publish MHURPorting '
               '-c Debug --no-self-contained '
@@ -28,5 +32,7 @@ if buildmode == 1:
               '-p:DebugType=portable '
               '-p:DebugSymbols=true '
               '-p:IncludeNativeLibrariesForSelfExtract=true')
-    
+    shutil.copy('./MHURPorting/MHURPortingDefault.json', './Release')
+    shutil.make_archive('./Debug/MHURPortingblender', 'zip', './MHURPortingBlender/MHURPortingBlender')
+    shutil.copy('./Debug/MHURPortingblender.zip', './MHURPortingBlender/MHURPortingBlender.zip')
 print("\n\nDone :D")
