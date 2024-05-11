@@ -113,7 +113,26 @@
         {
             "CharacterID": "Ch012",
             "CharacterName": "All Might",
-            "Styles": []
+            "Styles": [
+                {
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch012/Model/Default/Mesh/SK_Ch012_Default_00.SK_Ch012_Default_00",
+                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12000000_S.T_ui_Thumb_4_12000000_S"
+                    },
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/D1_00/Mesh/SK_Ch012_FmD1_00.SK_Ch012_FmD1_00",
+                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12101100_S.T_ui_Thumb_4_12101100_S"
+                    },
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/A1_00/Mesh/SK_Ch012_FmA1_00.SK_Ch012_FmA1_00",
+                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12100100_S.T_ui_Thumb_4_12100100_S"
+                    },
+                    "Style": {
+                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/B1_00/Mesh/SK_Ch012_FmB1_00.SK_Ch012_FmB1_00",
+                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12101100_S.T_ui_Thumb_4_12101100_S"
+                    }
+                }
+			]
         },
         {
             "CharacterID": "Ch013",
