@@ -109,46 +109,51 @@ public partial class MainView
         AppVM.MainVM.CurrentAsset = selected;
         
         var styles = selected.MainAsset.GetOrDefault<UScriptMap>("_costumeMeshs").Properties.ToArray();
-        var validstyles = new List<UObject>();
         var NStyles = new List<UObject>();
         var NSkeleton = new List<UObject>();
-        var selected_character_id = selected.Asset.Name.Substring(3, 5);
         var characterID = selected.UIAsset.Name.Substring(3, 5);
         var stringID = selected.UIAsset.Name.Substring(5, 3);
         int intID = 0;
         int.TryParse(stringID, out intID);
 
-
-
-
-
-        await Parallel.ForEachAsync(Globals.CharacterMapping.Character, async (data, token) =>
+        var styleTasks = new List<Task>();
+        
+        Parallel.ForEach(styles, style =>
         {
-            if (data.ID == selected_character_id)
+            if (styles.Count() > 1)
             {
-                if (data.styles.Count is 0)
-                {
-                    return;
-                }
-                await Parallel.ForEachAsync(data.styles, async (data, token) =>
-                {
-
-                    var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(data.styles.SkeletonPath);
-                    var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(data.styles.StyleImagePath);
-                    if (skeleton is not null && image is not null)
-                    {
-                        NStyles.Add(image);
-                        NSkeleton.Add(skeleton);
-                    }
-                });
+                styleTasks.Add(ProcessStyleAsync(characterID, style, NStyles, NSkeleton));
             }
         });
+
+        await Task.WhenAll(styleTasks);
 
         var styleSelector = new StyleSelector(NStyles.ToArray(), NSkeleton.ToArray());
         if (styleSelector.Options.Items.Count == 0) return;
         AppVM.MainVM.Styles.Add(styleSelector);
 
     }
+
+    static async Task ProcessStyleAsync(String characterId, KeyValuePair<FPropertyTagType, FPropertyTagType> data, 
+                                        List<UObject> NStyles, List<UObject> NSkeleton)
+    {
+        String skeletonPath = data.Value.GenericValue.ToString();
+        String styleImagePath = BuildStyleImagePath(characterId, data.Key.GenericValue.ToString());
+        
+        var skeleton = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(skeletonPath);
+        var image = await AppVM.CUE4ParseVM.Provider.TryLoadObjectAsync<UObject>(styleImagePath);
+        if (skeleton is not null && image is not null)
+        {
+            NStyles.Add(image);
+            NSkeleton.Add(skeleton);
+        }
+    }
+
+    private static String BuildStyleImagePath(String characterId, String id)
+    {
+        return "/Game/Character/" + characterId + "/GUI/Costume/S/T_ui_Thumb_4_" + id + "_S.T_ui_Thumb_4_" + id + "_S";
+    }
+    
 
     private void StupidIdiotBadScroll(object sender, MouseWheelEventArgs e)
     {

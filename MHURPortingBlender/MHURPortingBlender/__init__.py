@@ -49,10 +49,10 @@ class Receiver(threading.Thread):
         self.keep_alive = True
 
     def run(self):
-        host, port = 'localhost', 24283
+        host, port = 'localhost', 24290
         self.socket_server.bind((host, port))
         self.socket_server.settimeout(3.0)
-        Log.information(f"ValorantPorting Server Listening at {host}:{port}")
+        Log.information(f"MHURPorting Server Listening at {host}:{port}")
 
         while self.keep_alive:
             try:
@@ -77,7 +77,7 @@ class Receiver(threading.Thread):
     def stop(self):
         self.keep_alive = False
         self.socket_server.close()
-        Log.information("FortnitePorting Server Closed")
+        Log.information("MHURPorting Server Closed")
 
 
 class Utils:
@@ -168,7 +168,7 @@ class Utils:
 
             _, slot, location, *linear = info
 
-            if slot is 12 and value.endswith("_FX"):
+            if slot == 12 and value.endswith("_FX"):
                 return
 
             if (image := Utils.import_texture(value)) is None:
