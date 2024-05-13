@@ -15,8 +15,8 @@ public static class Globals
     public const string DISCORD_URL = "https://discord.gg/zfvGEZTrG7";
     public const string GITHUB_URL = "https://github.com/Tevtongermany/MHUR-Porting";
 
-    public const int BLENDER_PORT = 24283;
-    public const int UNREAL_PORT = 24284;
+    public const int BLENDER_PORT = 24290;
+    public const int UNREAL_PORT = 24291;
     public const int BUFFER_SIZE = 4096;
 
     public const string UDPClient_Ping = "Ping";
