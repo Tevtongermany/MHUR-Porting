@@ -47,4 +47,8 @@ public partial class AppSettings : ObservableObject
 
     [ObservableProperty]
     private Int64 useTime;
+
+    [ObservableProperty] 
+    private bool usingIk;
+
 }

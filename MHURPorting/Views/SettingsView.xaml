@@ -48,7 +48,7 @@
             <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{extensions:EnumToItemsSource {x:Type local:ERichPresenceAccess}}" SelectedItem="{Binding DiscordRPC, Converter={StaticResource EnumToString}}"/>
 
             <TextBlock Grid.Row="6" Grid.Column="0" Text="use time" />
-            <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding useTime}"/>
+            <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding UseTime}"/>
 
 
         </Grid>

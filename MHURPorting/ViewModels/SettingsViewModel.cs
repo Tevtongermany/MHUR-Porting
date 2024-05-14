@@ -8,8 +8,10 @@ namespace MHURPorting.ViewModels;
 public class SettingsViewModel : ObservableObject
 {
     public bool IsRestartRequired = false;
+    private string _useTime = "Hs";
 
     public bool IsLocalInstall => InstallType == EInstallType.Local;
+
     public EInstallType InstallType
     {
         get => AppSettings.Current.InstallType;
@@ -53,7 +55,10 @@ public class SettingsViewModel : ObservableObject
             OnPropertyChanged();
         }
     }
-    public string useTime
+
+
+
+    public string UseTime
     {
         get
         {
@@ -63,7 +68,8 @@ public class SettingsViewModel : ObservableObject
             TimeSpan timeSpan = TimeSpan.FromSeconds(current_time);
             return $"{timeSpan.Days}:{timeSpan.Hours}:{timeSpan.Minutes}:{timeSpan.Seconds}";
         }
-
-
     }
 }
+
+
+

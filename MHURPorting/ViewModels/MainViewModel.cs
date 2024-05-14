@@ -154,10 +154,10 @@ public partial class MainViewModel : ObservableObject
         var data = await ExportData.Create(CurrentAsset.Asset, CurrentAssetType, GetSelectedStyles());
         data.Name = currentAsset.DisplayName;
         var reorient = true;
-        BlenderService.Send(data, new BlenderExportSettings
-        {
-            ReorientBones = reorient
-        });
+        BlenderExportSettings exportSettings = new BlenderExportSettings();
+        exportSettings.ReorientBones = reorient;
+        exportSettings.UseIk = AppSettings.Current.UsingIk;
+        BlenderService.Send(data, exportSettings);
         loadTimez.Stop();
         AppLog.Information($"Finished exporting {data.Name} to BLENDER in {Math.Round(loadTimez.Elapsed.TotalSeconds, 3)}s");
     }

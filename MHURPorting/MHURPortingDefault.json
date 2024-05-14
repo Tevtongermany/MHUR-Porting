@@ -3,62 +3,7 @@
         {
             "CharacterID": "Ch001",
             "CharacterName": "Izuku Midoriya",
-            "Styles": [
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Default/Mesh/SK_Ch001_Default_00.SK_Ch001_Default_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1000000_S.T_ui_Thumb_4_1000000_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/B1_00/Mesh/SK_Ch001_SpB1_00.SK_Ch001_SpB1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1301100_S.T_ui_Thumb_4_1301100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Us/C1_00/Mesh/SK_Ch001_UsC1_00.SK_Ch001_UsC1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1402100_S.T_ui_Thumb_4_1402100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/C1_00/Mesh/SK_Ch001_SpC1_00.SK_Ch001_SpC1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1302100_S.T_ui_Thumb_4_1302100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Sp/A1_00/Mesh/SK_Ch001_SpA1_00.SK_Ch001_SpA1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1300100_S.T_ui_Thumb_4_1300100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Js/A1_00/Mesh/SK_Ch001_JsA1_00.SK_Ch001_JsA1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1200100_S.T_ui_Thumb_4_1200100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Fm/A1_00/Mesh/SK_Ch001_FmA1_00.SK_Ch001_FmA1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1100100_S.T_ui_Thumb_4_1100100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Eq/G1_00/Mesh/SK_Ch001_EqG1_00.SK_Ch001_EqG1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1006100_S.T_ui_Thumb_4_1006100_S"
-                    }
-                },
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch001/Model/Eq/D1_00/Mesh/SK_Ch001_EqD1_00.SK_Ch001_EqD1_00",
-                        "StyleImagePath": "/Game/Character/Ch001/GUI/Costume/S/T_ui_Thumb_4_1003100_S.T_ui_Thumb_4_1003100_S"
-                    }
-                }
-            ]
+            "Styles"
         },
         {
             "CharacterID": "Ch002",
@@ -113,26 +58,7 @@
         {
             "CharacterID": "Ch012",
             "CharacterName": "All Might",
-            "Styles": [
-                {
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch012/Model/Default/Mesh/SK_Ch012_Default_00.SK_Ch012_Default_00",
-                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12000000_S.T_ui_Thumb_4_12000000_S"
-                    },
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/D1_00/Mesh/SK_Ch012_FmD1_00.SK_Ch012_FmD1_00",
-                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12101100_S.T_ui_Thumb_4_12101100_S"
-                    },
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/A1_00/Mesh/SK_Ch012_FmA1_00.SK_Ch012_FmA1_00",
-                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12100100_S.T_ui_Thumb_4_12100100_S"
-                    },
-                    "Style": {
-                        "SkeletonPath": "/Game/Character/Ch012/Model/Fm/B1_00/Mesh/SK_Ch012_FmB1_00.SK_Ch012_FmB1_00",
-                        "StyleImagePath": "/Game/Character/Ch012/GUI/Costume/S/T_ui_Thumb_4_12101100_S.T_ui_Thumb_4_12101100_S"
-                    }
-                }
-			]
+            "Styles": []
         },
         {
             "CharacterID": "Ch013",
@@ -178,6 +104,9 @@
             "CharacterID": "Ch038",
             "CharacterName": "Mr. Compress",
             "Styles": []
-        }
-    ]
+        },
+        {
+            "CharacterID": "Ch016",
+            "CharacterName": "All for one"
+        
 }

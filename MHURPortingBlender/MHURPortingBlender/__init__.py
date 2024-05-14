@@ -65,7 +65,7 @@ class Receiver(threading.Thread):
                         data_string += data
                 self.event.set()
                 self.data = json.loads(data_string)
-                           
+
             except OSError as e:
                 pass
             except EOFError as e:
@@ -73,7 +73,8 @@ class Receiver(threading.Thread):
             except zlib.error as e:
                 Log.error(e)
             except json.JSONDecodeError as e:
-                Log.error(e) 
+                Log.error(e)
+                
     def stop(self):
         self.keep_alive = False
         self.socket_server.close()
@@ -110,8 +111,9 @@ class Utils:
             return None
         if bpy.context.active_object.type == "ARMATURE":
             ikrig = MHURRig.MHURRig(bpy.context.active_object)
-
-        ikrig.ApplyRig()
+            
+        if import_settings.get("UseIk") is True:
+            ikrig.ApplyRig()
 
         
         return bpy.context.active_object
@@ -150,9 +152,6 @@ class Utils:
 
         output_node = nodes.new(type="ShaderNodeOutputMaterial")
         output_node.location = (200, 0)
-        addon_dir = os.path.dirname(os.path.splitext(__file__)[0])
-        with bpy.data.libraries.load(os.path.join(addon_dir, "MHURPortingShader.blend")) as (data_from, data_to):
-            data_to.node_groups = data_from.node_groups
             
         shader_node = nodes.new(type="ShaderNodeGroup")
         shader_node.node_tree = bpy.data.node_groups.get("MHURPortingBasicToonShader")
@@ -237,6 +236,7 @@ class Utils:
 
 
 def import_response(response):
+    append_data()
     global import_assets_root
     import_assets_root = response.get("AssetsRoot")
 
@@ -248,6 +248,7 @@ def import_response(response):
 
     name = import_data.get("Name")
     type = import_data.get("Type")
+
 
     Log.information(f"Received Import for {type}: {name}")
     print(import_data)
@@ -271,22 +272,42 @@ def import_response(response):
         for override_material in part.get("OverrideMaterials"):
             index = override_material.get("SlotIndex")
             Utils.import_material(mesh.material_slots.values()[index], override_material)
+            
+def append_data():
+    addon_dir = os.path.dirname(os.path.splitext(__file__)[0])
+    with bpy.data.libraries.load(os.path.join(addon_dir, "MHURPortingShader.blend")) as (data_from, data_to):
+        for node_group in data_from.node_groups:
+            if not bpy.data.node_groups.get(node_group):
+                data_to.node_groups.append(node_group)
 
+        for obj in data_from.objects:
+            if not bpy.data.objects.get(obj):
+                data_to.objects.append(obj)
+
+        for mat in data_from.materials:
+            if not bpy.data.materials.get(mat):
+                data_to.materials.append(mat)
+def handler():
+    if import_event.is_set():
+        try:
+            import_response(server.data)
+        except Exception as e:
+            error_str = str(e)
+            Log.WARNING("A error occured!:")
+            traceback.print_exc()
+            message_box(error_str, "An unhandled error occurred", "ERROR")
+        import_event.clear()
+    return 0.01
 
 def register():
+    global import_event
     import_event = threading.Event()
 
     global server
     server = Receiver(import_event)
     server.start()
 
-    def handler():
-        if import_event.is_set():
-            import_response(server.data)
-            import_event.clear()
-        return 0.01
-
-    bpy.app.timers.register(handler)
+    bpy.app.timers.register(handler, persistent=True)
 
 
 def unregister():
