@@ -129,7 +129,7 @@ public partial class MainViewModel : ObservableObject
                 AppHelper.OpenWindow<StartupView>();
                 break;
             case "Tools_Update":
-                // TODO
+                AppHelper.Launch(Globals.GITHUB_URL);
                 break;
             case "Help_Discord":
                 AppHelper.Launch(Globals.DISCORD_URL);

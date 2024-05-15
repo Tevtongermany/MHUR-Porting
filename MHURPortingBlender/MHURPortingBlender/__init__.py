@@ -107,7 +107,7 @@ class Utils:
         if os.path.exists(mesh_path + ".pskx"):
             mesh_path += ".pskx"
 
-        if not pskimport(mesh_path,bReorientBones=True):
+        if not pskimport(mesh_path,bReorientBones=True,fBonesizeRatio=0.2):
             return None
         if bpy.context.active_object.type == "ARMATURE":
             ikrig = MHURRig.MHURRig(bpy.context.active_object)

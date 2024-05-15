@@ -22,7 +22,19 @@ public static class DiscordService
         State = "Idle",
         Timestamps = Timestamp,
         Assets = Assets,
-
+        Buttons = new[]
+        {
+            new Button
+            {
+                Label = "Join Porteria!",
+                Url = Globals.DISCORD_URL
+            },
+            new Button() 
+            {
+                Label = "Download MHUR Porting",
+                Url = Globals.GITHUB_URL
+            }
+        }
     };
     
     public static void Initialize()
@@ -30,7 +42,7 @@ public static class DiscordService
         if (Client is not null && !Client.IsDisposed) return;
         
         Client = new DiscordRpcClient(ID);
-        Client.OnReady += (_, args) => Log.Information("Discord Service Started for {0}#{1}", args.User.Username, args.User.Discriminator);
+        Client.OnReady += (_, args) => Log.Information("Discord Service Started for {0}", args.User.Username);
         Client.OnError += (_, args) => Log.Information("Discord Service Error {0}: {1}", args.Type.ToString(), args.Message);
 
         Client.Initialize();

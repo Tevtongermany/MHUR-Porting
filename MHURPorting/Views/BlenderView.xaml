@@ -9,7 +9,7 @@
         xmlns:adonisCtrls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
         xmlns:adonisExt="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
         
-        Title="Options" Width="480" Height="180" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Blender Option" Width="480" Height="180" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Game Installation*" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Use IK Rig (WIP)" VerticalAlignment="Center"/>
             
             <ToggleButton Grid.Row="2" Grid.Column="2" Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch }}" IsChecked="{Binding UseIk}" />
 
@@ -45,7 +45,6 @@
         </Grid>
         <Border Grid.Row="1" Background="{DynamicResource {x:Static adonisUi:Brushes.Layer1BackgroundBrush}}" adonisExt:LayerExtension.IncreaseLayer="True">
            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-               <TextBlock Text="* requires a restart for changes to take effect"  HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
                <Button MinWidth="80" Margin="{adonisUi:Space 1}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="OK" Click="OnClickOK"/>
            </StackPanel>
         </Border>

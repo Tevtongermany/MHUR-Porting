@@ -3,7 +3,7 @@
         {
             "CharacterID": "Ch001",
             "CharacterName": "Izuku Midoriya",
-            "Styles"
+            "Styles": []
         },
         {
             "CharacterID": "Ch002",
@@ -107,6 +107,8 @@
         },
         {
             "CharacterID": "Ch016",
-            "CharacterName": "All for one"
-        
+            "CharacterName": "All for one",
+            "Styles": []
+        }
+    ]
 }
