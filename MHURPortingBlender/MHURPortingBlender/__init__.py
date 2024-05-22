@@ -265,6 +265,8 @@ def import_response(response):
 
         imported_parts[part_type] = armature
 
+        create_outline_material(mesh)
+
         for material in part.get("Materials"):
             index = material.get("SlotIndex")
             Utils.import_material(mesh.material_slots.values()[index], material)
@@ -273,6 +275,26 @@ def import_response(response):
             index = override_material.get("SlotIndex")
             Utils.import_material(mesh.material_slots.values()[index], override_material)
             
+def create_outline_material(obj):
+    # Create a new material
+    material = bpy.data.materials.new(name="MHUR_Outline")
+
+    # Create a new emission node
+    emission_node = obj.material_slots[0].material.node_tree.nodes.new("ShaderNodeEmission")
+
+    # Set the emission color to black (0, 0, 0)
+    emission_node.inputs["Color"].default_value = (0, 0, 0, 1)
+
+    # Create a new output node
+    output_node = obj.material_slots[0].material.node_tree.nodes.new("ShaderNodeOutputMaterial")
+
+    # Link the emission node to the output node
+    obj.material_slots[0].material.node_tree.links.new(emission_node.outputs["Emission"], output_node.inputs["Surface"])
+
+    # Assign the new material to the object
+    obj.data.materials.append(material)
+    obj.material_slots[0].material = material
+
 def append_data():
     addon_dir = os.path.dirname(os.path.splitext(__file__)[0])
     with bpy.data.libraries.load(os.path.join(addon_dir, "MHURPortingShader.blend")) as (data_from, data_to):
